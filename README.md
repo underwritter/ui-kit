@@ -1,0 +1,1 @@
+# react-skeleton-master-property
