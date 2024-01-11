@@ -3,7 +3,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  mode: "dev",
+  mode: "development",
   entry: "./src/index.tsx",
   devtool: "inline-source-map",
   output: {
@@ -11,8 +11,9 @@ module.exports = {
     filename: "bundle.js",
   },
   devServer: {
-    static: "./dist",
+    historyApiFallback: true,
   },
+
   module: {
     rules: [
       {
@@ -27,8 +28,8 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
-        test: /\.css$/i,
-        use: [MiniCssExtractPlugin.loader, "css-loader"],
+        test: /\.(css|sass|scss)$/i,
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
       },
       {
         test: /\.svg$/,

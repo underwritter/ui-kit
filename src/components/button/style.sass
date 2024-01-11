@@ -1,0 +1,35 @@
+@import '../../sass-helpers/constants.sass'
+@import '../../sass-helpers/mixins.sass'
+
+.button
+    @include fontBold
+    @include border
+    padding: 4px 15px
+    cursor: pointer
+    width: max-content
+    &:disabled
+        @include disabled
+        cursor: default
+    &:active
+        @include active
+
+.small
+    font-size: 16px
+    min-width: 70px
+    min-height: 30px
+
+.medium
+    font-size: 18px
+    min-width: 75px
+    min-height: 35px
+
+.large
+    font-size: 22px
+    min-width: 83px
+    min-height: 39px
+
+.primary
+    @include primary
+
+.secondary
+    @include secondary
