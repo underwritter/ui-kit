@@ -1,7 +1,7 @@
 import React from "react";
 import {CustomButton} from "./button";
 import {Meta} from "@storybook/react";
-import {Story} from "../../utils/helpers/story.types";
+import {Story} from "../../../.storybook/types/story.types";
 import {CustomButtonProps} from "./button.types";
 
 export default {
