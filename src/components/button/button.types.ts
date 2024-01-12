@@ -1,5 +1,5 @@
 
-export interface CustomButtonProps {
+export interface ButtonProps {
   label: string;
   onClick: VoidFunction;
   type: "button" | "submit";

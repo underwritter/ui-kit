@@ -1,24 +1,24 @@
 import React from "react";
-import {CustomButton} from "./button";
+import {Button} from "./button";
 import {Meta} from "@storybook/react";
 import {Story} from "../../../.storybook/types/story.types";
-import {CustomButtonProps} from "./button.types";
+import {ButtonProps} from "./button.types";
 
 export default {
   title: "UI-KIT/Button",
-  component: CustomButton,
-} as Meta<typeof CustomButton>;
+  component: Button,
+} as Meta<typeof Button>;
 
-export const Secondary: Story<typeof CustomButton> = (arg: CustomButtonProps) => (
-  <CustomButton {...arg} />
+export const Secondary: Story<typeof Button> = (arg: ButtonProps) => (
+  <Button {...arg} />
 );
 
-export const Primary: Story<typeof CustomButton> = (arg: CustomButtonProps) => (
-  <CustomButton {...arg} />
+export const Primary: Story<typeof Button> = (arg: ButtonProps) => (
+  <Button {...arg} />
 );
 
-export const Disabled: Story<typeof CustomButton> = (arg: CustomButtonProps) => (
-  <CustomButton {...arg} />
+export const Disabled: Story<typeof Button> = (arg: ButtonProps) => (
+  <Button {...arg} />
 );
 
 Secondary.args = {
