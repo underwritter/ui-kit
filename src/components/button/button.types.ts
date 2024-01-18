@@ -1,9 +1,8 @@
-
 export interface ButtonProps {
   label: string;
-  onClick: VoidFunction;
-  type: "button" | "submit";
-  disabled?: boolean;
-  size?: "small" | "medium" | "large";
+  onClick?: VoidFunction;
+  type?: "button" | "submit";
+  isDisabled?: boolean;
+  size?: "medium" | "large";
   variant?: "primary" | "secondary";
 }

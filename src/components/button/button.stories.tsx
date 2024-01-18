@@ -1,8 +1,8 @@
-import React from "react";
-import {Button} from "./button";
-import {Meta} from "@storybook/react";
 import {Story} from "../../../.storybook/types/story.types";
 import {ButtonProps} from "./button.types";
+import {Meta} from "@storybook/react";
+import {Button} from "./button";
+import React from "react";
 
 export default {
   title: "UI-KIT/Button",
@@ -35,6 +35,6 @@ Primary.args = {
 
 Disabled.args = {
   label: "button",
-  size: "small",
-  disabled: true,
+  size: "large",
+  isDisabled: true,
 };
