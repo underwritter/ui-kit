@@ -1,19 +1,14 @@
-@mixin fontBold
-    font-family: 'Amatic SC', sans-serif
-    letter-spacing: 1px
-    font-weight: 900
-
-@mixin fontRegular
-    font-family: 'Amatic SC', sans-serif
-    letter-spacing: 1px
+@mixin font
+    font-family: 'Pangolin', cursive
+    letter-spacing: 0.4px
     font-weight: 400
 
 @mixin primary
-    background-color: $black
+    background: $black
     color: $white
 
 @mixin secondary
-    background-color: $white
+    background: $white
     color: $black
 
 @mixin active
@@ -21,10 +16,13 @@
     border: 2px solid $gray
 
 @mixin disabled
-    background-color: $white
+    background: $white
     border: 2px solid $gray
     color: $gray
 
 @mixin border
     border: 2px solid $black
     border-radius: $borderRadius
+
+@mixin shadow
+    box-shadow: 0px 5px 5px 2px rgba(34, 60, 80, 0.2)
