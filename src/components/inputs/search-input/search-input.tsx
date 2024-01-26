@@ -1,19 +1,19 @@
-import React, {useState, useEffect, ChangeEventHandler, ReactNode} from "react";
-import {InputFieldProps} from "../input.types";
+import React, {ChangeEventHandler, ReactNode, useEffect, useState} from "react";
+import {SearchInputProps} from "../input.types";
 import {FieldErrors} from "react-hook-form";
 import cn from "classnames";
 import "../style.sass";
 
-export const InputField = <T extends object>({
+export const SearchInput = <T extends object>({
   label,
   size = "medium",
   value,
   name,
   errors,
-  isDisable = false,
   maxLength,
+
   ...props
-}: InputFieldProps<T>) => {
+}: SearchInputProps<T>) => {
   const [inputValue, setInputValue] = useState(value || "");
   const remainingChars = maxLength ? maxLength - inputValue.length : undefined;
 
@@ -46,11 +46,11 @@ export const InputField = <T extends object>({
       <input
         value={inputValue}
         onChange={handleInputChange}
-        className={cn("input", size)}
-        disabled={isDisable}
+        className={cn("input", "search_input", size)}
         name={name as string}
         {...props}
       />
+      <div className="clear"></div>
       {maxLength && (
         <div className="char_count">
           {`${inputValue.length}/${maxLength}`}

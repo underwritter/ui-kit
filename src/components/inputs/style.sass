@@ -14,16 +14,32 @@
     @include font
     display: flex
     flex-direction: column
-    width: 500px
+    min-width: 300px
+    max-width: 500px
 
 .input
     @include border
     @include font
     padding: 0 20px
+    width: 100%
     &:focus
         @include shadow
     &:disabled
         @include disabled
+
+.search_input
+    padding: 0 40px
+    position: relative
+
+.search
+    position: absolute
+
+.clear
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
 
 .medium
     font-size: 18px
