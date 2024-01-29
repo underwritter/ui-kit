@@ -18,7 +18,13 @@ export default {
   },
   // Используйте webpackFinal для настройки Webpack
   webpackFinal: async (config) => {
-    // Проверяем наличие правила для обработки шрифтов
+    const assetrule = config.module.rules.find(({test}) => test.test(".svg"));
+
+    const assetloader = {
+      loader: assetrule.loader,
+      options: assetrule.options || assetrule.query,
+    };
+
     const fontRuleIndex = config.module?.rules.findIndex(
       (rule) =>
         rule.test &&
@@ -44,12 +50,17 @@ export default {
       config.module.rules.push(fontRule);
     }
 
-    // Настройте правило для обработки CSS
-    config.module?.rules.push({
-      test: /\.(css|sass|scss)$/i,
-      use: ["style-loader", "css-loader", "sass-loader"],
-      include: path.resolve(__dirname, "../src"),
-    });
+    config.module?.rules.push(
+      {
+        test: /\.svg$/,
+        use: ["@svgr/webpack", assetloader],
+      },
+      {
+        test: /\.(css|sass|scss)$/i,
+        use: ["style-loader", "css-loader", "sass-loader"],
+        include: path.resolve(__dirname, "../src"),
+      }
+    );
 
     return config;
   },
