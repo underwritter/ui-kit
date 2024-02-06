@@ -16,16 +16,26 @@ export default {
   docs: {
     autodocs: "tag",
   },
-  // Используйте webpackFinal для настройки Webpack
   webpackFinal: async (config) => {
-    // Проверяем наличие правила для обработки шрифтов
+    config.module?.rules.push(
+      {
+        test: /\.svg$/,
+        use: ["@svgr/webpack"],
+        include: path.resolve(__dirname, "../src"),
+      },
+      {
+        test: /\.(css|sass|scss)$/i,
+        use: ["style-loader", "css-loader", "sass-loader"],
+        include: path.resolve(__dirname, "../src"),
+      }
+    );
+
     const fontRuleIndex = config.module?.rules.findIndex(
       (rule) =>
         rule.test &&
         rule.test.toString() === /\.(woff|woff2|eot|ttf|otf)$/.toString()
     );
 
-    // Если правило существует, обновляем его, иначе добавляем новое правило
     if (fontRuleIndex !== undefined && fontRuleIndex !== -1) {
       const fontRule = {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
@@ -43,13 +53,6 @@ export default {
 
       config.module.rules.push(fontRule);
     }
-
-    // Настройте правило для обработки CSS
-    config.module?.rules.push({
-      test: /\.(css|sass|scss)$/i,
-      use: ["style-loader", "css-loader", "sass-loader"],
-      include: path.resolve(__dirname, "../src"),
-    });
 
     return config;
   },

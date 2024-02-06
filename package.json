@@ -33,7 +33,7 @@
     "@storybook/react": "8.0.0-alpha.8",
     "@storybook/react-vite": "8.0.0-alpha.8",
     "@storybook/test": "8.0.0-alpha.8",
-    "@svgr/webpack": "^8.1.0",
+    "@svgr/webpack": "8.1.0",
     "@types/node-sass": "4.11.3",
     "@types/react": "18.2.20",
     "@types/react-dom": "18.2.7",

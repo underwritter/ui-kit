@@ -15,5 +15,5 @@ export interface InputFieldProps<T> extends HTMLAttributes<HTMLInputElement>{
 
 export interface SearchInputProps<T> extends InputFieldProps<T> {
   incomingArray?: string[];
-  onClear?: React.SyntheticEvent<HTMLDivElement>;
+ 
 }

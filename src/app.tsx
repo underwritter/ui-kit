@@ -1,17 +1,15 @@
 import React from "react";
-import { SearchInput } from "./components/inputs/search-input/search-input";
-import { InputField } from "./components/inputs/input-field/input-field";
-import { InputFieldAll } from "./components/inputs/input-field/input-field.all";
-
+import {Provider} from "react-redux";
+import {store} from "./redux/store";
+import { Page } from "./components/pages/page";
 
 function App() {
-
   return (
-    <div className="app" style={{display: "grid", gap: "10px"}}>
-      <SearchInput onChange={()=>console.log('dkdjd') 
-      }/>
-      <InputFieldAll/>
-    </div>
+    <Provider store={store}>
+      <div className="app">
+        <Page/>
+      </div>
+    </Provider>
   );
 }
 export default App;

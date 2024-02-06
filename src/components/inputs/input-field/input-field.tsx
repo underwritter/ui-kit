@@ -1,8 +1,13 @@
-import React, {useState, useEffect, ChangeEventHandler, ReactNode} from "react";
+import { useInputFocus } from "../../../utils/hooks/use-input-focus";
+import React, {
+  useState,
+  ChangeEventHandler,
+  ReactNode,
+} from "react";
 import {InputFieldProps} from "../input.types";
 import {FieldErrors} from "react-hook-form";
 import cn from "classnames";
-import "../style.sass";
+import "./style.sass";
 
 export const InputField = <T extends object>({
   label,
@@ -15,11 +20,9 @@ export const InputField = <T extends object>({
   ...props
 }: InputFieldProps<T>) => {
   const [inputValue, setInputValue] = useState(value || "");
-  const remainingChars = maxLength ? maxLength - inputValue.length : undefined;
+  const { isFocused, onFocus, onBlur } = useInputFocus()
 
-  useEffect(() => {
-    setInputValue(value || "");
-  }, [value]);
+  const remainingChars = maxLength ? maxLength - inputValue.length : undefined;
 
   const handleInputChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const newValue = e.target.value;
@@ -41,16 +44,21 @@ export const InputField = <T extends object>({
   const spanLabel = label ? label.toUpperCase() : "";
 
   return (
-    <div className="input_wrapper">
+    <div className='wrapper_input_field'>
       {label && <span className="span_label">{spanLabel}</span>}
-      <input
-        value={inputValue}
-        onChange={handleInputChange}
-        className={cn("input", size)}
-        disabled={isDisable}
-        name={name as string}
-        {...props}
-      />
+      <div className={`wrapper_field ${isFocused && 'focus'}`}>
+        <input
+          value={inputValue}
+          onChange={handleInputChange}
+          className={cn("input", size)}
+          disabled={isDisable}
+          name={name as string}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          {...props}
+        />
+      </div>
+
       {maxLength && (
         <div className="char_count">
           {`${inputValue.length}/${maxLength}`}

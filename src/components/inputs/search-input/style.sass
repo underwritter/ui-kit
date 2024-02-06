@@ -1,0 +1,51 @@
+@import '../../../sass-helpers/constants.sass'
+@import '../../../sass-helpers/mixins.sass'
+
+.input_wrapper
+    @include font
+    border-radius: $borderRadius
+    max-width: 500px
+    min-width: 250px
+
+.dropdown_wrapper
+    @include border
+    
+
+.search_input_wrapper
+    padding: 0 10px
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    align-items: center
+    &:disabled
+        @include disabled
+
+.icons
+    padding: 0 5px
+
+.clear
+    cursor: pointer
+
+.dropdown
+    width: 100%
+    height: min-content
+    max-height: 200px
+    overflow-y: scroll
+    &::-webkit-scrollbar
+        width: 10px
+    &::-webkit-scrollbar-thumb
+        background: $light-gray
+        border-radius: $borderRadius
+        border: 2px solid $white
+    &::-webkit-scrollbar-track
+        background: $white
+        border-radius: $borderRadius
+        
+
+.dropdown_items
+    padding: 0 42px
+    height: 25px
+    border-top: 1px solid $gray
+    cursor: pointer
+    &:hover
+        background: $light-gray
