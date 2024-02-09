@@ -1,26 +1,21 @@
-import { useInputFocus } from "../../../utils/hooks/use-input-focus";
-import React, {
-  useState,
-  ChangeEventHandler,
-  ReactNode,
-} from "react";
-import {InputFieldProps} from "../input.types";
-import {FieldErrors} from "react-hook-form";
+import React, {useState, ChangeEventHandler} from "react";
 import cn from "classnames";
+import {useInputFocus} from "../../../utils/hooks/use-input-focus";
+import {InputFieldProps} from "../input.types";
 import "./style.sass";
 
 export const InputField = <T extends object>({
   label,
   size = "medium",
   value,
-  name,
-  errors,
+  status,
+  description,
   isDisable = false,
   maxLength,
   ...props
 }: InputFieldProps<T>) => {
   const [inputValue, setInputValue] = useState(value || "");
-  const { isFocused, onFocus, onBlur } = useInputFocus()
+  const {isFocused, onFocus, onBlur} = useInputFocus();
 
   const remainingChars = maxLength ? maxLength - inputValue.length : undefined;
 
@@ -34,25 +29,21 @@ export const InputField = <T extends object>({
     }
   };
 
-  const spanErrMessage =
-    errors && errors[name as keyof FieldErrors<T>] ? (
-      <span className="span_error_message">
-        {errors[name as keyof FieldErrors<T>].message as ReactNode}
-      </span>
-    ) : null;
+  const spanStatusMessage = description ? (
+    <span className={`span_status_message  ${status}`}>{description}</span>
+  ) : null;
 
   const spanLabel = label ? label.toUpperCase() : "";
 
   return (
-    <div className='wrapper_input_field'>
+    <div className="wrapper_input_field">
       {label && <span className="span_label">{spanLabel}</span>}
-      <div className={`wrapper_field ${isFocused && 'focus'}`}>
+      <div className={`wrapper_field ${isFocused && "focus"}`}>
         <input
           value={inputValue}
           onChange={handleInputChange}
           className={cn("input", size)}
           disabled={isDisable}
-          name={name as string}
           onFocus={onFocus}
           onBlur={onBlur}
           {...props}
@@ -65,7 +56,7 @@ export const InputField = <T extends object>({
           {remainingChars !== undefined}
         </div>
       )}
-      {spanErrMessage}
+      {spanStatusMessage}
     </div>
   );
 };

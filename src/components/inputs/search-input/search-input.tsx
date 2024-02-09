@@ -1,24 +1,17 @@
+import React, {ChangeEventHandler, useEffect, useRef, useState} from "react";
+import cn from "classnames";
 import useOutsideClick from "../../../utils/hooks/use-outside-click";
 import {useInputFocus} from "../../../utils/hooks/use-input-focus";
-import React, {
-  ChangeEventHandler,
-  ReactNode,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
 import {SearchInputProps} from "../input.types";
-import {FieldErrors} from "react-hook-form";
 import {Icon} from "../../icons/icon";
-import cn from "classnames";
 import "./style.sass";
 
 export const SearchInput = <T extends object>({
   label,
   size = "medium",
   value,
-  name,
-  errors,
+  status,
+  description,
   incomingArray,
   ...props
 }: SearchInputProps<T>) => {
@@ -28,7 +21,25 @@ export const SearchInput = <T extends object>({
 
   const dropdownRef = useRef<HTMLDivElement>(null);
 
+  useOutsideClick(dropdownRef, () => {
+    setShowDropdown(false);
+  });
+
   const {isFocused, onFocus, onBlur} = useInputFocus();
+
+  const handleInputClick = () => setShowDropdown(true);
+
+  const handleInputChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    const newValue = e.target.value;
+    setShowDropdown(newValue.length > 0);
+    setInputValue(newValue);
+  };
+
+  const spanStatusMessage = description ? (
+    <span className={`span_status_message  ${status}`}>{description}</span>
+  ) : null;
+
+  const spanLabel = label ? label.toUpperCase() : "";
 
   useEffect(() => {
     if (incomingArray.length) {
@@ -39,31 +50,8 @@ export const SearchInput = <T extends object>({
     }
   }, [inputValue, incomingArray]);
 
-  useOutsideClick(dropdownRef, () => {
-    setShowDropdown(false);
-  });
-
-  const handleInputClick = () => {
-    setShowDropdown(true);
-  };
-
-  const handleInputChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-    const newValue = e.target.value;
-    setShowDropdown(newValue.length > 0);
-    setInputValue(newValue);
-  };
-
-  const spanErrMessage =
-    errors && errors[name as keyof FieldErrors<T>] ? (
-      <span className="span_error_message">
-        {errors[name as keyof FieldErrors<T>].message as ReactNode}
-      </span>
-    ) : null;
-
-  const spanLabel = label ? label.toUpperCase() : "";
-
   return (
-    <div className='input_wrapper'>
+    <div className="input_wrapper">
       {label && <span className="span_label">{spanLabel}</span>}
       <div className="dropdown_wrapper">
         <div className={`search_input_wrapper ${isFocused && "focus"}`}>
@@ -72,7 +60,6 @@ export const SearchInput = <T extends object>({
             value={inputValue}
             onChange={handleInputChange}
             className={cn("input", "search_input", size)}
-            name={name as string}
             onFocus={onFocus}
             onBlur={onBlur}
             onClick={handleInputClick}
@@ -100,7 +87,7 @@ export const SearchInput = <T extends object>({
         )}
       </div>
 
-      {spanErrMessage}
+      {spanStatusMessage}
     </div>
   );
 };

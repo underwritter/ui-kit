@@ -1,5 +1,5 @@
-import {InputField} from "./input-field";
 import React from "react";
+import {InputField} from "./input-field";
 import "./style.sass";
 
 export const InputFieldAll = () => {

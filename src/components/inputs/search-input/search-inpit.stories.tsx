@@ -1,8 +1,8 @@
+import React from "react";
+import {Meta} from "@storybook/react";
 import {Story} from "../../../../.storybook/types/story.types";
 import {SearchInputProps} from "../input.types";
 import {SearchInput} from "./search-input";
-import {Meta} from "@storybook/react";
-import React from "react";
 
 export default {
   title: "UI-KIT/Inputs/SearchInput",

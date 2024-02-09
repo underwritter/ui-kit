@@ -1,6 +1,6 @@
+import React, {FC} from "react";
 import {IconName, IconProps, IconInnerProps, DynamicProp} from "./icon.types";
 import {iconSvg} from "./icon.constants";
-import React, {FC} from "react";
 import cn from "classnames";
 
 const IconInner: FC<IconInnerProps> = ({

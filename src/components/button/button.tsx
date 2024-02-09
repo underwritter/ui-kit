@@ -1,6 +1,6 @@
 import React, {FC} from "react";
-import {ButtonProps} from "./button.types";
 import cn from "classnames";
+import {ButtonProps} from "./button.types";
 import "./style.sass";
 
 export const Button: FC<ButtonProps> = ({
