@@ -1,64 +1,62 @@
-import React, {useState, useEffect, ChangeEventHandler, ReactNode} from "react";
-import {InputFieldProps} from "../input.types";
-import {FieldErrors} from "react-hook-form";
+import React, {useState, ChangeEventHandler} from "react";
 import cn from "classnames";
-import "../style.sass";
+import {useInputFocus} from "../../../utils/hooks/use-input-focus";
+import {InputFieldProps} from "../input.types";
+import "./style.sass";
 
 export const InputField = <T extends object>({
   label,
-  placeholder,
   size = "medium",
-  onChange,
   value,
-  name,
-  errors,
+  status,
+  description,
   isDisable = false,
   maxLength,
+  ...props
 }: InputFieldProps<T>) => {
   const [inputValue, setInputValue] = useState(value || "");
-  const remainingChars = maxLength ? maxLength - inputValue.length : undefined;
+  const {isFocused, onFocus, onBlur} = useInputFocus();
 
-  useEffect(() => {
-    setInputValue(value || "");
-  }, [value]);
+  const remainingChars = maxLength ? maxLength - inputValue.length : undefined;
 
   const handleInputChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const newValue = e.target.value;
     if (newValue.length <= (maxLength || Infinity)) {
       setInputValue(newValue);
-      if (onChange) {
-        onChange(e);
+      if (props.onChange) {
+        props.onChange(e);
       }
     }
   };
 
-  const spanErrMessage =
-    errors && errors[name as keyof FieldErrors<T>] ? (
-      <span className="span_error_message">
-        {errors[name as keyof FieldErrors<T>].message as ReactNode}
-      </span>
-    ) : null;
+  const spanStatusMessage = description ? (
+    <span className={`span_status_message  ${status}`}>{description}</span>
+  ) : null;
 
   const spanLabel = label ? label.toUpperCase() : "";
 
   return (
-    <div className="input_wrapper">
+    <div className="wrapper_input_field">
       {label && <span className="span_label">{spanLabel}</span>}
-      <input
-        value={inputValue}
-        onChange={handleInputChange}
-        placeholder={placeholder}
-        className={cn("input", size)}
-        disabled={isDisable}
-        name={name as string}
-      />
+      <div className={`wrapper_field ${isFocused && "focus"}`}>
+        <input
+          value={inputValue}
+          onChange={handleInputChange}
+          className={cn("input", size)}
+          disabled={isDisable}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          {...props}
+        />
+      </div>
+
       {maxLength && (
         <div className="char_count">
           {`${inputValue.length}/${maxLength}`}
           {remainingChars !== undefined}
         </div>
       )}
-      {spanErrMessage}
+      {spanStatusMessage}
     </div>
   );
 };

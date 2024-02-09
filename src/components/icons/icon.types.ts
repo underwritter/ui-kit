@@ -10,10 +10,10 @@ export enum IconSize {
 }
 
 export enum DynamicProp {
-  Width = "--width",
-  Height = "--height",
-  Fill = "--fill",
-  Stroke = "--stroke",
+  Width = "width",
+  Height = "height",
+  Fill = "fill",
+  Stroke = "stroke",
 }
 
 export interface IconProps extends Omit<SVGAttributes<SVGElement>, "name"> {
@@ -25,17 +25,18 @@ export interface IconProps extends Omit<SVGAttributes<SVGElement>, "name"> {
 }
 
 export enum IconName {
-  CloseClear = "CloseClear",
-  ArrowRight = "ArrowRight",
-  ArrowUp = "ArrowUp",
-  ArrowLeft = "ArrowLeft",
-  ArrowDown = "ArrowDown",
-  Check = "Check",
-  Show = "Show",
-  Hide = "Hide",
-  Info = "Info",
-  Moon = "Moon",
-  Sun = "Sun",
+  IconCloseClear = "IconCloseClear",
+  IconArrowRight = "IconArrowRight",
+  IconArrowUp = "IconArrowUp",
+  IconArrowLeft = "IconArrowLeft",
+  IconArrowDown = "IconArrowDown",
+  IconCheck = "IconCheck",
+  IconShow = "IconShow",
+  IconHide = "IconHide",
+  IconInfo = "IconInfo",
+  IconMoon = "IconMoon",
+  IconSun = "IconSun",
+  IconSearch = "IconSearch",
 }
 
 export interface IconInnerProps extends IconProps {

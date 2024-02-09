@@ -1,12 +1,15 @@
 import React from "react";
-import { Icon } from "./components/icons/icon";
-import './style.css'
-
-
+import {Provider} from "react-redux";
+import {store} from "./redux/store";
+import { Page } from "./components/pages/page";
 
 function App() {
-  return <div className="app" style={{display: "grid", gap: "10px"}}>
-
-  </div>;
+  return (
+    <Provider store={store}>
+      <div className="app">
+        <Page/>
+      </div>
+    </Provider>
+  );
 }
 export default App;

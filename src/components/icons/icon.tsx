@@ -1,12 +1,12 @@
+import React, {FC} from "react";
 import {IconName, IconProps, IconInnerProps, DynamicProp} from "./icon.types";
 import {iconSvg} from "./icon.constants";
-import React, {FC} from "react";
 import cn from "classnames";
 
 const IconInner: FC<IconInnerProps> = ({
   name,
-  size = 10,
-  color,
+  size = 24,
+  color = 'black',
   stroke = "none",
   onClick,
   style,
@@ -20,8 +20,6 @@ const IconInner: FC<IconInnerProps> = ({
   const IconSVG = iconSvg[name];
 
   const cssStyles = {
-    [DynamicProp.Width]: `${size}px`,
-    [DynamicProp.Height]: `${size}px`,
     [DynamicProp.Fill]: color,
     [DynamicProp.Stroke]: stroke,
     ...style,
@@ -29,6 +27,8 @@ const IconInner: FC<IconInnerProps> = ({
 
   return (
     <IconSVG
+      width={size}
+      height={size}
       onClick={onClick}
       style={cssStyles}
       className={cn(className)}
