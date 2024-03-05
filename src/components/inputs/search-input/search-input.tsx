@@ -4,7 +4,8 @@ import useOutsideClick from "../../../utils/hooks/use-outside-click";
 import {useInputFocus} from "../../../utils/hooks/use-input-focus";
 import {SearchInputProps} from "../input.types";
 import {Icon} from "../../icons/icon";
-import "./style.sass";
+import "./search-input-styles.sass";
+import "../general-input-styles.sass";
 
 export const SearchInput = <T extends object>({
   label,
@@ -31,7 +32,7 @@ export const SearchInput = <T extends object>({
 
   const handleInputChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const newValue = e.target.value;
-    setShowDropdown(newValue.length > 0);
+    setShowDropdown(newValue?.length > 0);
     setInputValue(newValue);
   };
 
@@ -42,7 +43,7 @@ export const SearchInput = <T extends object>({
   const spanLabel = label ? label.toUpperCase() : "";
 
   useEffect(() => {
-    if (incomingArray.length) {
+    if (incomingArray?.length) {
       const filtered = incomingArray.filter((item) =>
         item.toLowerCase().includes(inputValue.toLowerCase())
       );
@@ -51,7 +52,7 @@ export const SearchInput = <T extends object>({
   }, [inputValue, incomingArray]);
 
   return (
-    <div className="input_wrapper">
+    <div className="wrapper_search_input">
       {label && <span className="span_label">{spanLabel}</span>}
       <div className="dropdown_wrapper">
         <div className={`search_input_wrapper ${isFocused && "focus"}`}>
@@ -59,7 +60,7 @@ export const SearchInput = <T extends object>({
           <input
             value={inputValue}
             onChange={handleInputChange}
-            className={cn("input", "search_input", size)}
+            className={cn("search_input", size)}
             onFocus={onFocus}
             onBlur={onBlur}
             onClick={handleInputClick}

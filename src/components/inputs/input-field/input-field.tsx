@@ -2,7 +2,8 @@ import React, {useState, ChangeEventHandler} from "react";
 import cn from "classnames";
 import {useInputFocus} from "../../../utils/hooks/use-input-focus";
 import {InputFieldProps} from "../input.types";
-import "./style.sass";
+import "./input-field-styles.sass";
+import "../general-input-styles.sass";
 
 export const InputField = <T extends object>({
   label,
@@ -42,7 +43,7 @@ export const InputField = <T extends object>({
         <input
           value={inputValue}
           onChange={handleInputChange}
-          className={cn("input", size)}
+          className={cn("input_field", size)}
           disabled={isDisable}
           onFocus={onFocus}
           onBlur={onBlur}

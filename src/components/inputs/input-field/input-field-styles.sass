@@ -1,0 +1,27 @@
+@import '../../../sass-helpers/constants.sass'
+@import '../../../sass-helpers/mixins.sass'
+
+.wrapper_input_field
+    max-width: 500px
+    min-width: 250px
+    @include font
+    &:disabled
+        @include disabled
+
+.wrapper_field
+    display: flex
+    background: $white
+    @include border
+    &:disabled
+        @include disabled
+
+.input_field
+    padding: 0 15px
+    @include input
+    @include font
+    border-radius: $borderRadius
+
+.char_count
+    display: flex
+    justify-content: flex-end
+    padding-top: 5px

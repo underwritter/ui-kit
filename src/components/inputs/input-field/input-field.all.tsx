@@ -1,6 +1,6 @@
 import React from "react";
 import {InputField} from "./input-field";
-import "./style.sass";
+import "../general-input-styles.sass";
 
 export const InputFieldAll = () => {
   return (
