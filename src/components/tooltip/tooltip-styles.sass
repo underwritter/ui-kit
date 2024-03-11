@@ -1,0 +1,58 @@
+@import '../../sass-helpers/constants.sass'
+@import '../../sass-helpers/mixins.sass'
+
+.tooltip_wrapper
+    position: relative
+    display: inline-block
+
+.children
+    cursor: pointer
+    width: 100%
+    height: 100%
+    box-sizing: border-box
+
+.tooltip
+    display: inline-block
+    background: $white
+    @include font
+    max-width: 300px
+    font-weight: bold
+    padding: 10px
+    font-size: 13px
+    border-radius: 4px
+    outline: 2px solid black
+
+.arrow
+    position: absolute
+    width: 8px
+    height: 8px
+    background: inherit
+    visibility: hidden
+    &::before
+        position: absolute
+        border: 2px solid black
+        border-left: none
+        border-top: none
+        border-radius: 0 0 4px 0
+        width: 8px
+        height: 8px
+        background: inherit
+        visibility: visible
+        content: ''
+        transform: rotate(45deg)
+
+.tooltip
+    &[data-popper-placement ='top'] > .arrow
+        bottom: -4.5px
+    &[data-popper-placement ='bottom'] > .arrow
+        top: -6px
+        &::before
+            transform: rotate(225deg)
+    &[data-popper-placement ='left'] > .arrow
+        right: -4px
+        &::before
+            transform: rotate(315deg)
+    &[data-popper-placement ='right'] > .arrow
+        left: -6px
+        &::before
+            transform: rotate(135deg)

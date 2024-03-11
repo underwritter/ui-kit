@@ -6,7 +6,7 @@ import { Page } from "./components/pages/page";
 function App() {
   return (
     <Provider store={store}>
-      <div className="app">
+      <div >
         <Page/>
       </div>
     </Provider>

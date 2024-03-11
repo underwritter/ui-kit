@@ -1,0 +1,37 @@
+@import '../../sass-helpers/constants.sass'
+@import '../../sass-helpers/mixins.sass'
+
+.error
+    color: $warningColor
+
+.success
+    color: $successColor
+
+.span_label
+    font-size: 15px
+    padding: 0 0 5px 10px
+
+.focus
+    @include shadow
+
+.medium
+    font-size: 18px
+    height: 30px
+
+.large
+    font-size: 22px
+    height: 39px
+
+.span_status_message
+    font-size: 13px
+    padding: 5px 10px 0 10px
+
+.all
+    display: grid
+    grid-template-columns: 1fr 0.5fr
+    gap: 50px
+    justify-items: center
+    align-items: center
+
+.span_storybook
+    width: max-content

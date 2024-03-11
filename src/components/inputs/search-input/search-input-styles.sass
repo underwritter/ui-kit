@@ -1,6 +1,13 @@
 @import '../../../sass-helpers/constants.sass'
 @import '../../../sass-helpers/mixins.sass'
 
+.wrapper_search_input
+    max-width: 500px
+    min-width: 250px
+    @include font
+    &:disabled
+        @include disabled
+
 .input_wrapper
     @include font
     border-radius: $borderRadius
@@ -9,19 +16,27 @@
 
 .dropdown_wrapper
     @include border
-    
 
 .search_input_wrapper
     padding: 0 10px
     display: flex
+    background: $white
     flex-direction: row
+    border-radius: 6px
     justify-content: space-between
     align-items: center
     &:disabled
         @include disabled
 
-.icons
+.search_input
     padding: 0 5px
+    @include input
+    @include font
+    border-radius: $borderRadius
+
+.icons
+    width: 30px
+    height: 25px
 
 .clear
     cursor: pointer
@@ -40,7 +55,6 @@
     &::-webkit-scrollbar-track
         background: $white
         border-radius: $borderRadius
-        
 
 .dropdown_items
     padding: 0 42px
