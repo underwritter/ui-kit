@@ -1,1 +1,1 @@
-# react-skeleton-master-property
+# ui-kit
