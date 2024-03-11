@@ -1,4 +1,6 @@
-export const modifiers = [
+import { StrictModifiers } from "@popperjs/core";
+
+export const modifiers: StrictModifiers[] = [
     {
       name: "offset",
       requiresIfExists: ["offset"],

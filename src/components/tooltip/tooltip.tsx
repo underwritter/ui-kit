@@ -3,16 +3,18 @@ import ReactDOM from "react-dom";
 import cn from "classnames";
 import {usePopper} from "react-popper";
 import {createPopper} from "@popperjs/core";
-import { TooltipProps } from "./tooltip.types";
+import {TooltipProps} from "./tooltip.types";
+import {modifiers} from "./tooltip.constants";
+import {useAutoCloseOnScroll} from "../../utils/hooks/use-auto-close-on-scroll";
+import useOutsideClick from "../../utils/hooks/use-outside-click";
 import "./tooltip-styles.sass";
-import { modifiers } from "./constants.tooltip";
-
 
 const Tooltip: FC<TooltipProps> = ({
   content,
   children,
   isOpenByClick = false,
   position,
+  popupProps,
 }) => {
   const [isTooltipOpen, setTooltipOpen] = useState(false);
   const [tooltipInstance, setTooltipInstance] = useState<any>(null);
@@ -36,41 +38,32 @@ const Tooltip: FC<TooltipProps> = ({
   );
 
   useEffect(() => {
-    const handleScroll = () => setTooltipOpen(false);
-    const handleClickOutside = (event: MouseEvent) => {
-      const isOutsideTooltip =
-        referenceElement.current &&
-        popperElement.current &&
-        !referenceElement.current.contains(event.target as Node) &&
-        !popperElement.current.contains(event.target);
-      if (isOutsideTooltip) {
-        setTooltipOpen(false);
-      }
-    };
-
     if (referenceElement.current && popperElement.current) {
       setTooltipInstance(
         createPopper(referenceElement.current, popperElement.current, {
+          ...popupProps,
           placement: position,
           modifiers,
         })
       );
     }
 
-    window.addEventListener("scroll", handleScroll);
-    document.addEventListener("mousedown", handleClickOutside);
-
     return () => {
-      window.removeEventListener("scroll", handleScroll);
-      document.removeEventListener("mousedown", handleClickOutside);
-      tooltipInstance && tooltipInstance.destroy();
+      tooltipInstance?.destroy?.();
     };
   }, [
-    isTooltipOpen,
     position,
     referenceElement.current?.clientHeight,
     popperElement.current?.clientHeight,
   ]);
+
+  useOutsideClick(referenceElement, () => {
+    setTooltipOpen(false);
+  });
+
+  useAutoCloseOnScroll(() => {
+    setTooltipOpen(false);
+  }, []);
 
   const handleMouseEnter = () => {
     if (isOpenByClick) return;

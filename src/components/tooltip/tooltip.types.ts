@@ -1,8 +1,10 @@
-import { ReactNode } from "react";
+import {Options} from "@popperjs/core/lib";
+import {ReactNode} from "react";
 
-export interface TooltipProps{
-    content?: string;
-    children?: ReactNode;
-    isOpenByClick?: boolean;
-    position?: 'top' | 'bottom' | 'left' | 'right'
+export interface TooltipProps {
+  content?: string;
+  children?: ReactNode;
+  isOpenByClick?: boolean;
+  position?: "top" | "bottom" | "left" | "right";
+  popupProps?: Options;
 }
