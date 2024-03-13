@@ -14,7 +14,7 @@ const Tooltip: FC<TooltipProps> = ({
   children,
   isOpenByClick = false,
   position,
-  popupProps,
+  otherPopupProps,
 }) => {
   const [isTooltipOpen, setTooltipOpen] = useState(false);
   const [tooltipInstance, setTooltipInstance] = useState<any>(null);
@@ -41,7 +41,7 @@ const Tooltip: FC<TooltipProps> = ({
     if (referenceElement.current && popperElement.current) {
       setTooltipInstance(
         createPopper(referenceElement.current, popperElement.current, {
-          ...popupProps,
+          ...otherPopupProps,
           placement: position,
           modifiers,
         })
