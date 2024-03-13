@@ -5,6 +5,6 @@ export interface TooltipProps {
   content?: string;
   children?: ReactNode;
   isOpenByClick?: boolean;
-  position?: "top" | "bottom" | "left" | "right";
-  popupProps?: Options;
+  position: "top" | "bottom" | "left" | "right";
+  otherPopupProps?: Options;
 }

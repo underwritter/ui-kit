@@ -13,6 +13,7 @@ export const InputField = <T extends object>({
   description,
   isDisable = false,
   maxLength,
+  style,
   ...props
 }: InputFieldProps<T>) => {
   const [inputValue, setInputValue] = useState(value || "");
@@ -37,7 +38,7 @@ export const InputField = <T extends object>({
   const spanLabel = label ? label.toUpperCase() : "";
 
   return (
-    <div className="wrapper_input_field">
+    <div className="wrapper_input_field" style={style}>
       {label && <span className="span_label">{spanLabel}</span>}
       <div className={`wrapper_field ${isFocused && "focus"}`}>
         <input

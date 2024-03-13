@@ -2,6 +2,7 @@ import { HTMLAttributes } from "react";
 import { Status } from "../../utils/types/enums";
 
 export interface InputFieldProps<T> extends HTMLAttributes<HTMLInputElement>{
+  style?: React.CSSProperties;
   label?: string;
   size?: "medium" | "large";
   value?: string;

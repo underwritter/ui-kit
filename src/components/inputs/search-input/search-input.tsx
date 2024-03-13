@@ -14,6 +14,7 @@ export const SearchInput = <T extends object>({
   status,
   description,
   incomingArray,
+  style,
   ...props
 }: SearchInputProps<T>) => {
   const [inputValue, setInputValue] = useState(value || "");
@@ -52,7 +53,7 @@ export const SearchInput = <T extends object>({
   }, [inputValue, incomingArray]);
 
   return (
-    <div className="wrapper_search_input">
+    <div className="wrapper_search_input" style={style}>
       {label && <span className="span_label">{spanLabel}</span>}
       <div className="dropdown_wrapper">
         <div className={`search_input_wrapper ${isFocused && "focus"}`}>
